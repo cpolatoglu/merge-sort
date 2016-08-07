@@ -23,27 +23,25 @@ public class MergeSort {
 		int totalLength = firstArray.length + secondArray.length;
 		int[] mergedArray = new int[totalLength];
 
-		boolean isFromFirstArray = true;
-		for (int i = 0, j = 0, k = 0; i < totalLength; i++) {
-			if (j >= firstArray.length) {
-				isFromFirstArray = false;
-			} else if (k >= secondArray.length) {
-				isFromFirstArray = true;
-			} else if (firstArray[j] < secondArray[k]) {
-				isFromFirstArray = true;
-			} else if (firstArray[j] >= secondArray[k]) {
-				isFromFirstArray = false;
-			}
+		int i = 0, j = 0;
 
-			if (isFromFirstArray) {
-				mergedArray[i] = firstArray[j];
-				j++;
+		while (i < firstArray.length && j < secondArray.length) {
+			if (firstArray[i] < secondArray[j]) {
+				mergedArray[i + j] = firstArray[i];
+				i++;
 			} else {
-				mergedArray[i] = secondArray[k];
-				k++;
+				mergedArray[i + j] = secondArray[j];
+				j++;
 			}
 		}
 
+		for (; i < firstArray.length; i++) {
+			mergedArray[i + j] = firstArray[i];
+		}
+
+		for (; j < secondArray.length; j++) {
+			mergedArray[i + j] = secondArray[j];
+		}
 		return mergedArray;
 	}
 }
