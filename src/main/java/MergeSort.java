@@ -2,9 +2,11 @@ import java.util.Arrays;
 
 public class MergeSort {
 
-	public int[] sort(int[] arrayToSort) {
+	public static int[] sort(int[] arrayToSort) {
 
+		int[] sortedArray = arrayToSort;
 		int lengthOfArray = arrayToSort.length;
+		
 		if (lengthOfArray > 1) {
 			int halfOfArray = lengthOfArray / 2;
 			int[] firstHalf = Arrays.copyOfRange(arrayToSort, 0, halfOfArray);
@@ -13,12 +15,13 @@ public class MergeSort {
 			int[] secondHalf = Arrays.copyOfRange(arrayToSort, halfOfArray, lengthOfArray);
 			secondHalf = sort(secondHalf);
 
-			arrayToSort = merge(firstHalf, secondHalf);
+			sortedArray = merge(firstHalf, secondHalf);
 		}
-		return arrayToSort;
+
+		return sortedArray;
 	}
 
-	public int[] merge(int[] firstArray, int[] secondArray) {
+	public static int[] merge(int[] firstArray, int[] secondArray) {
 
 		int totalLength = firstArray.length + secondArray.length;
 		int[] mergedArray = new int[totalLength];
